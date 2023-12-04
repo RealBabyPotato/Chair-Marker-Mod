@@ -26,6 +26,7 @@ Projectiles: {
 	FriendlyDeathBeam.DisplayName: Friendly Death Beam
 	Maiden.DisplayName: Maiden
 	Turret.DisplayName: Turret
+	MaidenBreath.DisplayName: Maiden Breath
 }
 
 Buffs: {

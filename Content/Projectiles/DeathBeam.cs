@@ -18,6 +18,7 @@ namespace ChairMarker.Content.Projectiles
         {
             // Main.projFrames[Projectile.type] = 2;
         }
+
         public override void SetDefaults()
         {
             Projectile.damage = 100;

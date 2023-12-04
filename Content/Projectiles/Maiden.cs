@@ -14,6 +14,7 @@ namespace ChairMarker.Content.Projectiles
 {
     internal class Maiden : ModProjectile
     {
+        // Vector2 offsetToHead = new Vector2(Projectile.Center.X - 30f, Projectile.Center.Y - 70f);
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 10;
@@ -85,7 +86,7 @@ namespace ChairMarker.Content.Projectiles
 
             if (foundTarget)
             {
-                Dust.NewDust(new Vector2(Projectile.Center.X - 30f, Projectile.Center.Y - 70f), 1, 1, DustID.Electric, 0, 0, 130, Color.PaleVioletRed);
+                Dust.NewDust(new Vector2(Projectile.Center.X - 30f, Projectile.Center.Y - 70f), 1, 1, DustID.Electric, 0, 0, 200, Color.PaleVioletRed);
             }   
             
         }
@@ -151,6 +152,8 @@ namespace ChairMarker.Content.Projectiles
             // Default movement parameters (here for attacking)
             float speed = 15f;
             float inertia = 8f;
+            float offsetX = 200f;
+            float offsetY = 100f;
 
             if (foundTarget)
             {
@@ -158,11 +161,19 @@ namespace ChairMarker.Content.Projectiles
                 if (distanceFromTarget > 40f)
                 {
                     // The immediate range around the target (so it doesn't latch onto it when close)
-                    Vector2 direction = targetCenter - Projectile.Center;
+                    Vector2 direction = new Vector2(targetCenter.X + offsetX, targetCenter.Y - offsetY) - Projectile.Center;
                     direction.Normalize();
                     direction *= speed;
 
                     Projectile.velocity = (Projectile.velocity * (inertia - 1) + direction) / inertia;
+                } 
+                
+                if(distanceFromTarget < 240f)
+                {
+                    Projectile.velocity = Vector2.Zero;
+                    // Projectile.NewProjectile(Projectile.GetSource_FromThis(), new Vector2(Projectile.Center.X - 30f, Projectile.Center.Y - 70f), (targetCenter - Projectile.Center) * 0.25f, ModContent.ProjectileType<MaidenBreath>(), 100, Projectile.knockBack, Projectile.owner);
+
+                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), new Vector2(Projectile.Center.X - 30f, Projectile.Center.Y - 70f), (targetCenter - new Vector2(Projectile.Center.X - 30f, Projectile.Center.Y - 70f)) * 0.25f, ModContent.ProjectileType<MaidenBreath>(), 100, Projectile.knockBack, Projectile.owner);
                 }
             }
             else
