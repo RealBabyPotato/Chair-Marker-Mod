@@ -1,0 +1,41 @@
+Items: {
+	Whirling_Death: {
+		DisplayName: Whirling Death
+		Tooltip: Welcome to the leeeeagueeeeee of Draven! Deals ramping damage if you catch the axes.
+	}
+
+	LukesStaff: {
+		DisplayName: Luke's Staff
+		Tooltip: Dearest Karthus...
+	}
+
+	EulogyOfTheIsles: {
+		DisplayName: Eulogy Of The Isles
+		Tooltip: ""
+	}
+
+	TurretBlueprint: {
+		DisplayName: Turret Blueprint
+		Tooltip: ""
+	}
+}
+
+Projectiles: {
+	DravenAxe.DisplayName: Draven Axe
+	DeathBeam.DisplayName: Death Beam
+	FriendlyDeathBeam.DisplayName: Friendly Death Beam
+	Maiden.DisplayName: Maiden
+	Turret.DisplayName: Turret
+}
+
+Buffs: {
+	MaidenBuff: {
+		DisplayName: Maiden Buff
+		Description: Mods.ChairMarker.Buffs.MaidenBuff.Description
+	}
+
+	TurretBuff: {
+		DisplayName: Turret Buff
+		Description: Mods.ChairMarker.Buffs.TurretBuff.Description
+	}
+}
