@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Animations;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -86,7 +87,7 @@ namespace ChairMarker.Content.Projectiles
 
             if (foundTarget)
             {
-                Dust.NewDust(new Vector2(Projectile.Center.X - 30f, Projectile.Center.Y - 70f), 1, 1, DustID.Electric, 0, 0, 200, Color.PaleVioletRed);
+                Dust.NewDust(new Vector2(Projectile.Center.X - 30f, Projectile.Center.Y - 70f), 1, 1, DustID.Blood, 0, 0, 200, Color.PaleVioletRed);
             }   
             
         }
@@ -147,6 +148,11 @@ namespace ChairMarker.Content.Projectiles
             }
         }
 
+        public override void OnSpawn(IEntitySource source)
+        {
+             Projectile.NewProjectile(Projectile.GetSource_FromThis(), new Vector2(Projectile.Center.X - 30f, Projectile.Center.Y - 70f), Vector2.Zero, ModContent.ProjectileType<MaidenMinion>(), 12, Projectile.knockBack, Projectile.owner);
+        }
+
         private void Movement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
         {
             // Default movement parameters (here for attacking)
@@ -173,7 +179,7 @@ namespace ChairMarker.Content.Projectiles
                     Projectile.velocity = Vector2.Zero;
                     // Projectile.NewProjectile(Projectile.GetSource_FromThis(), new Vector2(Projectile.Center.X - 30f, Projectile.Center.Y - 70f), (targetCenter - Projectile.Center) * 0.25f, ModContent.ProjectileType<MaidenBreath>(), 100, Projectile.knockBack, Projectile.owner);
 
-                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), new Vector2(Projectile.Center.X - 30f, Projectile.Center.Y - 70f), (targetCenter - new Vector2(Projectile.Center.X - 30f, Projectile.Center.Y - 70f)) * 0.25f, ModContent.ProjectileType<MaidenBreath>(), 100, Projectile.knockBack, Projectile.owner);
+                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), new Vector2(Projectile.Center.X - 30f, Projectile.Center.Y - 70f), (targetCenter - new Vector2(Projectile.Center.X - 30f, Projectile.Center.Y - 70f)) * 0.25f, ModContent.ProjectileType<MaidenBreath>(), 20, Projectile.knockBack, Projectile.owner);
                 }
             }
             else
@@ -256,11 +262,6 @@ namespace ChairMarker.Content.Projectiles
                     }
                 }
             }
-
-            // friendly needs to be set to true so the minion can deal contact damage
-            // friendly needs to be set to false so it doesn't damage things like target dummies while idling
-            // Both things depend on if it has a target or not, so it's just one assignment here
-            // You don't need this assignment if your minion is shooting things instead of dealing contact damage
             Projectile.friendly = foundTarget;
 
         }
