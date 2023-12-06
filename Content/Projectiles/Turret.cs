@@ -22,9 +22,7 @@ namespace ChairMarker.Content.Projectiles
 
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileID.FrostHydra);
-
-            
+            Projectile.CloneDefaults(ProjectileID.FrostHydra); 
             
         }
 

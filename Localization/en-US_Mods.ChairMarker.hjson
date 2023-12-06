@@ -11,7 +11,7 @@ Items: {
 
 	EulogyOfTheIsles: {
 		DisplayName: Eulogy Of The Isles
-		Tooltip: ""
+		Tooltip: The Shadow Isles calls! More to come soon from this item.
 	}
 
 	TurretBlueprint: {
@@ -27,6 +27,7 @@ Projectiles: {
 	Maiden.DisplayName: Maiden
 	Turret.DisplayName: Turret
 	MaidenBreath.DisplayName: Maiden Breath
+	MaidenMinion.DisplayName: Maiden Minion
 }
 
 Buffs: {

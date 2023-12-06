@@ -26,7 +26,7 @@ namespace ChairMarker.Content.Items.Weapons
             Item.damage = 1; 
             Item.knockBack = 0f;
 
-            Item.value = Item.sellPrice(gold: 3);
+            Item.value = Item.sellPrice(copper: 1);
             Item.rare = ItemRarityID.Blue;
 
             Item.UseSound = SoundID.Item1;
@@ -35,18 +35,18 @@ namespace ChairMarker.Content.Items.Weapons
             Item.shootSpeed = 10f;
         }
 
+        public override bool CanUseItem(Player player)
+        {
+            var localModPlayer = player.GetModPlayer<LocalModPlayer>();
+            return localModPlayer.activeAxes < 3;
+        }
+
         public override void AddRecipes()
         {
             CreateRecipe()
                 .AddIngredient(ItemID.DirtBlock, 1)
                 .AddTile(TileID.Anvils)
                 .Register();
-        }
-
-        public override bool CanUseItem(Player player)
-        {
-            var localModPlayer = player.GetModPlayer<LocalModPlayer>();
-            return localModPlayer.activeAxes < 3;
         }
 
         public override bool? UseItem(Player player)

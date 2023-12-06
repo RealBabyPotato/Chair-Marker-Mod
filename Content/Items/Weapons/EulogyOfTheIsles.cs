@@ -38,12 +38,14 @@ namespace ChairMarker.Content.Items.Weapons
             Item.useTime = 36;
             Item.useAnimation = 36;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.value = Item.sellPrice(gold: 2);
+            Item.value = Item.sellPrice(copper: 2);
+
+            Item.width = 35;
+            Item.height = 52;
 
             Item.rare = ItemRarityID.Red;
             Item.UseSound = SoundID.Item44;
 
-             
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
@@ -60,5 +62,19 @@ namespace ChairMarker.Content.Items.Weapons
 
             return false;
         }
+
+        public override bool CanUseItem(Player player)
+        {
+            return player.ownedProjectileCounts[ModContent.ProjectileType<Maiden>()] == 0;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                    .AddIngredient(ItemID.DirtBlock, 1)
+                    .AddTile(TileID.Anvils)
+                    .Register();
+        }
     }
+
 }
